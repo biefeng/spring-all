@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.dao.TestDao">
+    <select id="hello" resultType="String">
+        select name from test_count where guid =#{id}
+    </select>
+
+    <update id="progress">
+        declare
+          tmp_count number;
+        begin
+            select count into tmp_count from test_count where guid=#{id} for update;
+            update test_count set count=(tmp_count+#{count}) where guid=#{id};
+            commit ;
+        end;
+    </update>
+</mapper>

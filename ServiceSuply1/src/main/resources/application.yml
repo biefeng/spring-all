@@ -1,0 +1,59 @@
+server:
+  port: 7538
+
+spring:
+  application:
+    name: service-suply-1
+  profiles:
+    active: mysql
+
+
+
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/swagger-ui.html
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
+
+mybatis:
+  mapper-locations: classpath:com/cloud/**/*.xml
+
+logging:
+  level:
+    com.cloud: info
+  file:  ./files/${spring.application.name}.log
+---
+
+spring:
+  profiles: oracle
+  datasource:
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    url: jdbc:oracle:thin:@//localhost:1521/ORCL
+    username: SYSTEM
+    password: 272232
+    tomcat:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      test-on-borrow: true
+      test-while-idle: false
+      validation-query: SELECT 1 from dual
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7537/eureka/
+
+---
+
+spring:
+  profiles: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/biefeng
+    username: root
+    password: root
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7537/eureka/

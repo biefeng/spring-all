@@ -1,0 +1,26 @@
+server:
+  port: 7539
+
+spring:
+  application:
+    name: service-suply-2
+  profiles:
+    active: dev
+
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/swagger-ui.html
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
+---
+
+spring:
+  profiles: dev
+
+eureka:
+  status-page-url: http://${eureka.instance.hostname}:${server.port}/swagger-ui.html
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7537/eureka/

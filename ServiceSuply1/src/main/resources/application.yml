@@ -5,7 +5,12 @@ spring:
   application:
     name: service-suply-1
   profiles:
-    active: mysql
+    active: oracle
+    #set the static content locations eg. js/css/html
+  resources:
+    static-locations: classpath:/static
+  freemarker:
+    template-loader-path: classpath:/templates
 
 
 
@@ -22,8 +27,9 @@ mybatis:
 
 logging:
   level:
-    com.cloud: info
+    com.cloud: debug
   file:  ./files/${spring.application.name}.log
+
 ---
 
 spring:
@@ -32,7 +38,7 @@ spring:
     type: org.apache.tomcat.jdbc.pool.DataSource
     url: jdbc:oracle:thin:@//localhost:1521/ORCL
     username: SYSTEM
-    password: 272232
+    password: root
     tomcat:
       driver-class-name: oracle.jdbc.driver.OracleDriver
       test-on-borrow: true

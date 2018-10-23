@@ -5,6 +5,7 @@ import com.cloud.module.ResponseEntity;
 import com.cloud.service.TestService;
 import com.cloud.service.feign.ServiceSuply1;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixException;
 import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +27,10 @@ public class TestController {
 
     @Autowired
     private ServiceSuply1 serviceSuply1;
+
+    public ResponseEntity test(){
+        return new ResponseEntity();
+    }
 
     @GetMapping("hello")
     @HystrixCommand(fallbackMethod = "error")

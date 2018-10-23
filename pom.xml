@@ -12,6 +12,8 @@
         <module>EurekaServer</module>
         <module>ServiceSuply2</module>
         <module>GateWay</module>
+        <module>GateSecurity</module>
+        <!--<module>Test</module>-->
     </modules>
 
     <!-- Inherit defaults from Spring Boot -->
@@ -23,7 +25,23 @@
 
     <!-- Add typical dependencies for a web application -->
     <dependencies>
+        <!--redis start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <!--redis end-->
 
 
         <dependency>

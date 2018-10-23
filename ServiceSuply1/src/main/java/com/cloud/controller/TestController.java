@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("test")
-@CrossOrigin
 public class TestController {
     private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 
@@ -27,7 +26,7 @@ public class TestController {
         ResponseEntity entity = new ResponseEntity();
         entity.setSuccess(true);
         String nickName = service.hello(id);
-        LOG.debug("Hello : {}", nickName);
+        LOG.info("Hello : {}", nickName);
         entity.setData(nickName);
         return entity;
     }

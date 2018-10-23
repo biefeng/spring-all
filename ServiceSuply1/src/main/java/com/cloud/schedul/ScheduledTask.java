@@ -16,7 +16,7 @@ public class ScheduledTask {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ScheduledTask.class);
 
-    @Scheduled(cron = "0/5 * * * * *")
+    //@Scheduled(cron = "0/5 * * * * *")
     public void task1(){
         LOGGER.debug("Scheduled task is running!");
        // System.out.println("Scheduled task is running!");

@@ -4,6 +4,16 @@ server:
 spring:
   application:
     name: gate-way
+  resources:
+    static-locations: classpath:/static
+  datasource:
+    url:  jdbc:oracle:thin:@//localhost:1521/ORCL
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    password: root
+    username: system
+    tomcat:
+      validation-query: select 1 from dual
+
 
 eureka:
   instance:
@@ -15,10 +25,33 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:7537/eureka/
 
-zuul:
-  routes:
-    customers: /customers/**
-      #path: /user/**
+shiro:
+  filter:
+  - /css/**
+  - /js/**
+  - favicon.ico
+  #- /**/*.html
+  logout:
+    /logout
+  authc:
+    /**
+  loginUrl:
+    http://localhost:8080/login.html
+  loginUri:
+    /comm/login
+  successUrl:
+    http://localhost:8080/index.html
+  errorUrl:
+    /403
+
+#zuul:
+  #routes:
+    #customers: /customers/**
+    #path: /user/**
 logging:
   level:
     com.cloud: debug
+
+mybatis:
+  mapper-locations: classpath:com/cloud/**/*.xml
+

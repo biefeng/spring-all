@@ -51,10 +51,15 @@
         </dependency>
 
 
-       <!-- <dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.noraui</groupId>
             <artifactId>ojdbc7</artifactId>
-        </dependency>-->
+        </dependency>
 
 
         <dependency>
